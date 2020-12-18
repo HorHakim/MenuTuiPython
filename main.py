@@ -6,5 +6,5 @@ Tel : 07 69 22 52 55
 """
 from Frame import *
 
-frame = Frame(numberOptions=0)
+frame = Frame(numberOptions=2)
 print(frame.graphicalGrid)
