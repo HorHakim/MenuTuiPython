@@ -10,13 +10,22 @@ import os
 
 class Frame:
 
-	def __init__(self, numberOptions):
+	def __init__(self, numberLinksToFrames, numberButtons=None):
 
-		self.numberOptions = numberOptions
+		self.numberLinksToFrames = numberLinksToFrames
+		self.numberButtons = numberButtons
 
 		self.getTerminalSize()
 		self.logicalGrid = self.generateLogicalGrid()
 		self.graphicalGrid = self.generateGraphicalGrid()
+################################################################################################################		
+##############################                Meta-data Frame       ############################################
+################################################################################################################
+	
+	""" Ici on va gérer les métadatas."""
+	
+
+################################################################################################################
 
 ################################################################################################################
 ###############################   				Logics 				############################################
@@ -24,7 +33,8 @@ class Frame:
 
 	
 	def getTerminalSize(self):
-		
+		"""Instantiate 2 attributes for the frame class : 
+					The number of rows and columns of the frame"""
 		rows, columns = os.popen('stty size', 'r').read().split()
 		self.NumberLines = int(rows) - 4
 		self.numberColumns = int(columns)
@@ -41,13 +51,13 @@ class Frame:
 		return emptyLogicalGrid
 
 
-	def addOptionOnLogicalGrid(self, emptyLogicalGrid, position="center"):
+	def addLinksOnLogicalGrid(self, emptyLogicalGrid, position="center"):
 			
 			if position == "center":
 				position = self.getTerminalCenterPosition()
-				position[0] -= (self.numberOptions - 1)
+				position[0] -= (self.numberLinksToFrames - 1)
 
-				for indexOption in range(self.numberOptions):
+				for indexLink in range(self.numberLinksToFrames):
 					emptyLogicalGrid[position[0], position[1]] = 2
 					position[0] += 2
 				
@@ -57,7 +67,7 @@ class Frame:
 	def generateLogicalGrid(self):
 
 		emptyLogicalGrid = self.generateEmptyLogicalGrid()
-		logicalGrid = self.addOptionOnLogicalGrid(emptyLogicalGrid=emptyLogicalGrid)
+		logicalGrid = self.addLinksOnLogicalGrid(emptyLogicalGrid=emptyLogicalGrid)
 
 		return logicalGrid
 		
@@ -83,5 +93,13 @@ class Frame:
 			graphicalGrid += "\n"
 		
 		return graphicalGrid 
+
+	def ShowGraphicalGrid(self):
+		
+		os.system("clear")
+		print(self.graphicalGrid)
+
+		return None
+
 
 ##################################################################################################################
