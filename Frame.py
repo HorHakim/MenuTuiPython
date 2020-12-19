@@ -116,13 +116,32 @@ class Frame:
 	
 	def generateGraphicalGrid(self):
 
-		listeCharacs = [" ", "O", "l", "b"]
+		listeCharacs = [" ", "O"]
 		graphicalGrid = ""
 		
+		doNotAddAnything = 0
+		counterLinks = 0
+		counterButtons = 0
+
 		for logicLine in self.logicalGrid:
 			for logicValue in logicLine:
+				if doNotAddAnything != 0:
+					doNotAddAnything -= 1
+					pass
+				
+				elif logicValue == 0 or logicValue == 1:
+					graphicalGrid += listeCharacs[logicValue]
+				elif logicValue == 2:
+					graphicalGrid += self.metaData["links"][str(counterLinks)][1]
+					doNotAddAnything += len(self.metaData["links"][str(counterLinks)][1]) - 1
+					counterLinks += 1
+				
+				elif logicValue ==3:
+					graphicalGrid += self.metaData["buttons"][str(counterButtons)][1]
+					doNotAddAnything += len(self.metaData["buttons"][str(counterButtons)][1]) - 1
+					counterLinks += 1
 
-				graphicalGrid += listeCharacs[logicValue]
+				
 			graphicalGrid += "\n"
 		
 		return graphicalGrid 
