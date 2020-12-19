@@ -4,6 +4,8 @@
 		  	"2": [4, "frame4"]
 		  	},
   
+"linkCursor" : 0,
+
 "buttons" : {
 			"0": ["1", "button1"]
   			}
