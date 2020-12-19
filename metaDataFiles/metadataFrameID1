@@ -6,6 +6,7 @@
 
 "buttons" : {
 			"0": ["A", "button0"],
-  			"1": ["B", "button1"]}
+  			"1": ["B", "button1"],
+  			"-1": ["X", "EXIT"]}
 }
 

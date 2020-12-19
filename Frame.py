@@ -8,8 +8,8 @@ import numpy
 import os
 import json
 import readchar
+import sys
 import time
-
 
 
 class Frame:
@@ -145,7 +145,9 @@ class Frame:
 		return logicalGrid
 		
 
-
+	def quitTUI(self):
+		os.system("clear")
+		sys.exit()
 
 #######################################################################################################################################
 
@@ -164,6 +166,10 @@ class Frame:
 
 		elif inputCommand == readchar.key.DOWN:
 			self.modifyPostionCursor(direction="down")
+
+		elif inputCommand == self.metaData["buttons"]["-1"][0]  :
+			self.quitTUI()
+
 		
 #######################################################################################################################################
 
@@ -198,10 +204,20 @@ class Frame:
 					counterLinks += 1
 				
 				elif logicValue ==3:
-					graphicalGrid = graphicalGrid[:-6] + "[{}] : ".format(self.metaData["buttons"][str(counterButtons)][0])
-					graphicalGrid += self.metaData["buttons"][str(counterButtons)][1]
-					doNotAddAnything += len(self.metaData["buttons"][str(counterButtons)][1]) - 1
-					counterButtons += 1
+					if counterButtons < self.numberButtons - 1:
+
+						graphicalGrid = graphicalGrid[:-6] + "[{}] : ".format(self.metaData["buttons"][str(counterButtons)][0])
+						graphicalGrid += self.metaData["buttons"][str(counterButtons)][1]
+						doNotAddAnything += len(self.metaData["buttons"][str(counterButtons)][1]) - 1
+						counterButtons += 1
+
+					elif counterButtons == self.numberButtons - 1 :
+						counterButtons = "-1"
+
+						graphicalGrid = graphicalGrid[:-6] + "[{}] : ".format(self.metaData["buttons"][counterButtons][0])
+						graphicalGrid += self.metaData["buttons"][counterButtons][1]
+						doNotAddAnything += len(self.metaData["buttons"][counterButtons][1]) - 1
+						counterButtons = self.numberButtons - 1
 
 				
 			graphicalGrid += "\n"
