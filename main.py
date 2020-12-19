@@ -6,5 +6,5 @@ Tel : 07 69 22 52 55
 """
 from Frame import *
 
-frame = Frame(numberLinksToFrames=2)
+frame = Frame(frameID=1)
 frame.ShowGraphicalGrid()
