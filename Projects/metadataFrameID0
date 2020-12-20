@@ -1,0 +1,22 @@
+{
+    "links": {
+        "0": [
+            4,
+            "coucou"
+        ],
+        "1": [
+            2,
+            "chocolat"
+        ],
+        "2": [
+            1,
+            "voiture"
+        ]
+    },
+    "buttons": {
+        "0": [
+            "A",
+            "Lave vaisselle"
+        ]
+    }
+}
